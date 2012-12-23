@@ -24,7 +24,7 @@ $f=1;
 $f = $sitePercent / 100;
 $p = 1.0/$difficulty;
 $r = log(1.0-$p+$p/$c);
-$B = 50;
+$B = $settings->getsetting('blockvalue');
 $los = log(1/(exp($r)-1));
 
 //Query bitcoind for list of transactions
@@ -33,7 +33,7 @@ $numAccounts = count($transactions);
 
 for($i = 0; $i < $numAccounts; $i++){
 	// Check for 50BTC in each transaction (even when immature so we can start tracking confirms)
-	if($transactions[$i]["amount"] >= 50 && ($transactions[$i]["category"] == "immature" || $transactions[$i]["category"] == "immature")) {
+	if($transactions[$i]["amount"] >= $B && ($transactions[$i]["category"] == "immature" || $transactions[$i]["category"] == "immature")) {
 
 		// At this point we may have found a block, Check to see if this accountAddres is already added to `networkBlocks`
 		$accountExistsQ = mysql_query("SELECT id FROM networkBlocks WHERE accountAddress = '".$transactions[$i]["txid"]."' ORDER BY blockNumber DESC LIMIT 0,1")or die(mysql_error());
@@ -283,12 +283,12 @@ while ($blocks = mysql_fetch_object($blocksQ)) {
                         $account_type = account_type($ownerId);
                         if ($account_type == 0) {
 				// is normal account
-				$predonateAmount = (1-$f)*(50*$shareRatio);
+				$predonateAmount = (1-$f)*($B*$shareRatio);
 				$predonateAmount = rtrim(sprintf("%f",$predonateAmount ),"0");
 				$totalReward = $predonateAmount - ($predonateAmount * ($sitePercent/100));
 			} else {
 				// is early adopter round 1 0% lifetime fees
-				$predonateAmount = 0.9999*(50*$shareRatio);
+				$predonateAmount = 0.9999*($B*$shareRatio);
 				$predonateAmount = rtrim(sprintf("%f",$predonateAmount ),"0");
 				$totalReward = $predonateAmount;
 			}

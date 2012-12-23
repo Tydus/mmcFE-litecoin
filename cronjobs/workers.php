@@ -20,7 +20,7 @@ $c = .00000001;
 $f = $sitePercent / 100;
 $p = 1.0/$difficulty;
 $r = log(1.0-$p+$p/$c);
-$B = 50;
+$B = $settings->getsetting('blockvalue');
 $los = log(1/(exp($r)-1));
 
 // Check for if worker is active (submitted shares in the last 10 mins)
@@ -49,8 +49,8 @@ try {
         $totalRoundShares = $settings->getsetting("currentroundshares");
 
         //if ($totalRoundShares < $difficulty) $totalRoundShares = $difficulty;
-        mysql_query("UPDATE webUsers SET round_estimate = round((1-".$f.")*50*(shares_this_round/".$totalRoundShares.")*(1-(donate_percent/100)), 8)");
+        mysql_query("UPDATE webUsers SET round_estimate = round((1-".$f.")*$B*(shares_this_round/".$totalRoundShares.")*(1-(donate_percent/100)), 8)");
 
 	// comment the one line below out if you want to disable 0% fees for first 35 users
-        mysql_query("UPDATE webUsers SET round_estimate = round(0.9999*50*(shares_this_round/".$totalRoundShares.")*(1-(donate_percent/100)), 8) WHERE account_type = '9'");
+        mysql_query("UPDATE webUsers SET round_estimate = round(0.9999*$B*(shares_this_round/".$totalRoundShares.")*(1-(donate_percent/100)), 8) WHERE account_type = '9'");
 
