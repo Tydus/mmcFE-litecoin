@@ -21,21 +21,27 @@ $includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 include($includeDirectory."requiredFunctions.php");
 include($includeDirectory."btceapi2.php");
 
-	// Update MtGox last price via curl, 3 second timeout on connection
-	$mtgox_ticker = exec("/usr/bin/curl -q -s --connect-timeout 3 'https://mtgox.com/code/data/ticker.php'");
-	if (!is_null($mtgox_ticker)) {
-		$ticker_obj = json_decode($mtgox_ticker);
-		if (intval($ticker_obj->ticker->last) > 0) {
-			$settings->setsetting('mtgoxlast', round($ticker_obj->ticker->last, 4));
-		}
-	}
+//update ticker value every 30 minutes
+$TICKER_INTERVAL = 30 * 60;
+
+$lastticker = (int) $settings->getsetting('lastticker');
+$runtime = time();
+
+if ($runtime - $lastticker >= $TICKER_INTERVAL) {
    
+   $result = btce_api2("btc_usd/ticker","getInfo");
+   $btcusd = $result["ticker"]["avg"];
+   $settings->setsetting('mtgoxlast',$btcusd);
+      
    $result = btce_api2("ltc_usd/ticker","getInfo");     
    $ltcusd = $result["ticker"]["avg"];
    $settings->setsetting('ltcusdlast',$ltcusd);
-   
+      
    $result = btce_api2("ltc_btc/ticker","getInfo");     
    $ltcbtc = $result["ticker"]["avg"];
    $settings->setsetting('ltcbtclast',$ltcbtc);
-
+   
+   $settings->setsetting('lastticker',$runtime);
+   
+}
 ?>

@@ -35,7 +35,7 @@ class Settings {
 	}
 
 	function setsetting($settingname, $value) {
-      	mysql_query("UPDATE settings SET value='".$value."' WHERE setting ='".$settingname."'");
+      	mysql_query("INSERT INTO settings VALUES('".$settingname."', '".$value."') ON DUPLICATE KEY UPDATE value = '".$value."';");
 	}
 }
 
