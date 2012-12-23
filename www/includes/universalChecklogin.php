@@ -38,8 +38,7 @@ if(isset($_COOKIE[$cookieName])){
 	if (isset($userInfo->pin)) { $authPin = $userInfo->pin; }
 	if (isset($userInfo->pass)) { $hashedPass = $userInfo->pass; }
 	if (isset($userInfo->admin)) { $isAdmin = $userInfo->admin; }
-	// if (isset($userInfo->share_count)) { $lifetimeUserShares = $userInfo->share_count - $userInfo->stale_share_count; }
-	$lifetimeUserShares = $userInfo->share_count - $userInfo->stale_share_count;
+	if (isset($userInfo->share_count) && isset($userInfo->stale_share_count)) { $lifetimeUserShares = $userInfo->share_count - $userInfo->stale_share_count; }
 	if (isset($userInfo->stale_share_count)) { $lifetimeUserInvalidShares = $userInfo->stale_share_count; }
 	if (isset($userInfo->shares_this_round)) { $totalUserShares = $userInfo->shares_this_round; }
 	if (isset($userInfo->hashrate)) { $currentUserHashrate = $userInfo->hashrate; }

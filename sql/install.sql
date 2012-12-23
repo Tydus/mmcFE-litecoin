@@ -52,20 +52,24 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`setting`, `value`) VALUES
 ('mtgoxlast', '0'),
-('currenthashrate', '172341'),
-('currentworkers', '12597'),
+('currenthashrate', '0'),
+('currentworkers', '0'),
 ('sitebalance', '0'),
-('currentroundshares', '11338'),
-('sitepercent', '1.5'),
+('currentroundshares', '0'),
+('sitepercent', '0'),
 ('websitename', 'mmcFE'),
 ('sitepayoutaddress', '1Q3jm4YrdD8b849m4XUkG1MSWx9WpMVUPG'),
 ('slogan', 'A Simple & Clean Pushpool Frontend'),
 ('pagetitle', 'mmcFE'),
 ('siterewardtype', '0'),
-('statstime', '1309647901'),
+('statstime', '0'),
 ('tobedonated', '0'),
 ('donatedtodate', '0.00'),
-('lastdonatedblock', '0');
+('lastdonatedblock', '0'),
+('ltcbtclast','0.00000'),
+('ltcusdlast','0.0000'),
+('blockvalue','6.00');
+
 
 CREATE TABLE IF NOT EXISTS `shares` (
   `id` bigint(30) NOT NULL AUTO_INCREMENT,
@@ -142,12 +146,12 @@ CREATE TABLE IF NOT EXISTS `webUsers` (
   `accountLocked` int(255) NOT NULL COMMENT 'This is the timestamp when the account will be unlocked(usually used to lock accounts that are trying to be bruteforced)',
   `accountFailedAttempts` int(2) NOT NULL COMMENT 'This counts the number of failed attempts for web login',
   `pin` varchar(255) NOT NULL COMMENT 'four digit pin to allow account changes',
-  `share_count` int(11) DEFAULT NULL,
-  `stale_share_count` int(11) DEFAULT NULL,
-  `shares_this_round` int(11) DEFAULT NULL,
+  `share_count` int(11) DEFAULT 0,
+  `stale_share_count` int(11) DEFAULT 0,
+  `shares_this_round` int(11) DEFAULT 0,
   `api_key` varchar(255) CHARACTER SET latin1 COLLATE latin1_bin DEFAULT NULL,
   `activeEmail` int(1) DEFAULT NULL,
-  `hashrate` int(11) DEFAULT NULL,
+  `hashrate` int(11) DEFAULT 0,
   `donate_percent` varchar(11) DEFAULT '0',
   `round_estimate` varchar(40) DEFAULT '0',
   `account_type` int(1) NOT NULL DEFAULT '0' COMMENT '0 = normal account, 9 = early-adopter no-fee',
