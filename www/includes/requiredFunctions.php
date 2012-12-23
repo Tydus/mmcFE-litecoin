@@ -16,44 +16,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Website Reference:http://www.gnu.org/licenses/gpl-2.0.html
 */
 
-// RPC Bitcoind Credentials
-//
-$rpcType = "http"; 				// http or https
-$rpcUsername = "username"; 				// username as specified in your litecoin.conf configuration file
-$rpcPassword = "password"; 				// password
-$rpcHost = "localhost:9332";
 
-
-// MySql Credentials
-//
-$dbHost = "localhost";
-$dbUsername = "user";
-$dbPassword = "pass";
-$dbPort = "3306";
-$dbDatabasename = "pool";
-
-// Cookie settings (more info @http://us.php.net/manual/en/function.setcookie.php)
-//
-$cookieName = "LTCPool"; 				//Set this to what ever you want (text string)
-$cookiePath = "/";				//Choose your path!
-$cookieDomain = "yourdoma.in";			//Set this to your domain
-
+include("configuration.php");
 include("bitcoinController/bitcoin.inc.php");	// Dont touch.
+include("settings.php");
 
-// Salt & Pretzels
-$salt = "fkfghad12sJ54GH4GUH15dk14fg1jdj55555111kfGHGjh2121"; 					// random series of numbers and letters; set it to anything or any length you want.
 $cookieValid = false; 				// leave as: false
 
 connectToDb();
-include('settings.php');
-
 $settings = new Settings();
-
-//						//
-//--------- End Configuration Section ----------//
-//						//
-
-
 
 function connectToDb(){
 	//Set variables to global retireve outside of the scope

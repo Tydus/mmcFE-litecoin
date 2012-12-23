@@ -1,0 +1,35 @@
+<?php
+
+// RPC Bitcoind Credentials
+$rpcType = "http"; 				// http or https
+$rpcUsername = "username"; 				// username as specified in your litecoin.conf configuration file
+$rpcPassword = "password"; 				// password
+$rpcHost = "localhost:9332";
+
+// MySQL Credentials
+$dbHost = "localhost";
+$dbUsername = "user";
+$dbPassword = "pass";
+$dbPort = "3306";
+$dbDatabasename = "pool";
+
+// Cookie settings (more info @http://us.php.net/manual/en/function.setcookie.php)
+$cookieName = "LTCPool"; 				//Set this to what ever you want (text string)
+$cookiePath = "/";				//Choose your path!
+$cookieDomain = "yourdoma.in";			//Set this to your domain
+
+// SALT
+// as long as this remains secret your users passwords are safer
+// in situations where the database is stolen
+// make it long, random, and UNIQUE!!!
+// http://passwordsgenerator.net/ is a good tool
+$salt = "aBOWuq3K6WlmZ1PLG2wf9ukbyOHkYCVdtQGuTnok1DtS5ULO";
+
+// current base value of a block in this network
+$blockValue = 6.00;
+
+// power modifier for shares so we properly calcuate hash rate
+// in pushpool config (ArtForz build): "rpc.target.bits"    : 21,
+$rewritePower = 21;
+
+?>

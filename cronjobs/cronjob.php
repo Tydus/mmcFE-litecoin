@@ -24,7 +24,7 @@ $f=1;
 $f = $sitePercent / 100;
 $p = 1.0/$difficulty;
 $r = log(1.0-$p+$p/$c);
-$B = $settings->getsetting('blockvalue');
+$B = $blockValue;
 $los = log(1/(exp($r)-1));
 
 //Query bitcoind for list of transactions

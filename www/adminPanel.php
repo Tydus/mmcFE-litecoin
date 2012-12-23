@@ -28,7 +28,6 @@ if (isset($_POST["act"]))
 				$settings->setsetting("pagetitle", mysql_real_escape_string($_POST["pageTitle"]));
 				$settings->setsetting("slogan", mysql_real_escape_string($_POST["headerSlogan"]));
 				$settings->setsetting("siterewardtype", mysql_real_escape_string($_POST["rewardType"]));
-            $settings->setsetting("blockvalue", mysql_real_escape_string($_POST["blockValue"]));
 				$settings->loadsettings(); //refresh settings
 				$goodMessage = "Successfully updated general settings";
 			} catch (Exception $e) {
@@ -146,8 +145,6 @@ if ($returnError) { echo "<div class=\"message errormsg\"><p>".antiXss($returnEr
 			Default Reward Type <select name="rewardType" size="1">
 			<option value="1" <?php if ($settings->getsetting("siterewardtype") == 1) echo "selected"; ?>>PPLNS</option>
 			</select>
-         <br/>
-         Base Block Value <input type="text" name="blockValue" size="50" value="<?php echo antiXss($settings->getsetting("blockvalue")); ?>"><br/>
 			<br/><br/>
 			Authorization Pin <input type="password" size="4" maxlength="4" name="authPin"><br/><br>
 			<input type="submit" class="" value=" Update Site Settings ">

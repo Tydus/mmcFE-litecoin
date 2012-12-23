@@ -19,7 +19,7 @@ $sql =  "SELECT IFNULL(sum(a.id),0) as id, p.username FROM pool_worker p LEFT JO
                 "GROUP BY username";
 $result = mysql_query($sql);
 while ($resultrow = mysql_fetch_object($result)) {
-        $retarget = 16;
+        $retarget = $rewritePower;
         $hashrate = $resultrow->id;
         $key = bcpow(2,$retarget) or die("bcpow err");
         $hashrate = round((($hashrate*$key)/600)/1000, 3);
@@ -34,7 +34,7 @@ $sql =  "SELECT sum(a.id) as id FROM ".
                         ") a ";
 $result = mysql_query($sql);
 if ($resultrow = mysql_fetch_object($result)) {
-        $retarget = 16;
+        $retarget = $rewritePower;
         $hashrate = $resultrow->id;
         $key = bcpow(2,$retarget) or die("bcpow err");
         $hashrate = round((($hashrate*$key)/600)/1000, 3);

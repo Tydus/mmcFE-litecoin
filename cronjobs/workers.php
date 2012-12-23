@@ -20,7 +20,7 @@ $c = .00000001;
 $f = $sitePercent / 100;
 $p = 1.0/$difficulty;
 $r = log(1.0-$p+$p/$c);
-$B = $settings->getsetting('blockvalue');
+$B = $blockValue;
 $los = log(1/(exp($r)-1));
 
 // Check for if worker is active (submitted shares in the last 10 mins)
