@@ -49,7 +49,7 @@ $last_no_blocks_found = 50;
 
                 <div class="sidebar">
 
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
 
                 </div>          <!-- .sidebar ends -->
 

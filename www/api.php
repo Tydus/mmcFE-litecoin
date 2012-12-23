@@ -2,7 +2,7 @@
 //if (!isset($_GET["api_key"]))
 //	exit;
 
-$includeDirectory = "/var/www/mmcFE/www/includes/";
+$includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 
 include($includeDirectory."requiredFunctions.php");
 

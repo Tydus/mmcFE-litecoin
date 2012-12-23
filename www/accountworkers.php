@@ -1,6 +1,6 @@
 <?php
 
-include ("includes/templates/header.php");
+include_once ("includes/templates/header.php");
 
 if(!$cookieValid) {
 	header('Location: /');
@@ -110,7 +110,7 @@ if (isset($_POST["act"])) {
         <div class="block_content">
 
                 <div class="sidebar">
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
                 </div>          <!-- .sidebar ends -->
 
 
@@ -195,4 +195,4 @@ $realUsername = $splitUsername[1];
 
 </div>          <!-- .block ends -->
 
-<?php include ("includes/templates/footer.php");?>
+<?php include_once ("includes/templates/footer.php");?>

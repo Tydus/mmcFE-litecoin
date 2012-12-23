@@ -1,6 +1,6 @@
 <?php
 
-include ("includes/templates/header.php");
+include_once ("includes/templates/header.php");
 
 $returnError = "";
 $goodMessage = "";
@@ -81,7 +81,7 @@ $goodMessage = "";
 
                 <div class="sidebar">
 
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
 
                 </div>          <!-- .sidebar ends -->
 

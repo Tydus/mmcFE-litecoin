@@ -1,5 +1,5 @@
 <?php
-$includeDirectory = "/var/www/pool/www/includes/";
+$includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 
 //Include hashing functions
 include($includeDirectory."requiredFunctions.php");

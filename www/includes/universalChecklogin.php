@@ -17,7 +17,7 @@
 
 //Check if the cookie is set, if so check if the cookie is valid
 
-error_reporting(E_ERROR | E_WARNING | E_PARSE);
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 if(isset($_COOKIE[$cookieName])){
 	$cookieValid = false;

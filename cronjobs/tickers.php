@@ -15,11 +15,11 @@
 //
 
 //Set page starter variables//
-$includeDirectory = "/var/www/mmcFE/www/includes/";
+$includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 
 //Include site functions
 include($includeDirectory."requiredFunctions.php");
-
+include($includeDirectory."btceapi2.php");
 
 	// Update MtGox last price via curl, 3 second timeout on connection
 	$mtgox_ticker = exec("/usr/bin/curl -q -s --connect-timeout 3 'https://mtgox.com/code/data/ticker.php'");
@@ -29,5 +29,13 @@ include($includeDirectory."requiredFunctions.php");
 			$settings->setsetting('mtgoxlast', round($ticker_obj->ticker->last, 4));
 		}
 	}
+   
+   $result = btce_api2("ltc_usd/ticker","getInfo");     
+   $ltcusd = $result["ticker"]["avg"];
+   $settings->setsetting('ltcusdlast',$ltcusd);
+   
+   $result = btce_api2("ltc_btc/ticker","getInfo");     
+   $ltcbtc = $result["ticker"]["avg"];
+   $settings->setsetting('ltcbtclast',$ltcbtc);
 
 ?>

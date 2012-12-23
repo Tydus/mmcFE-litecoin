@@ -1,7 +1,7 @@
 <?php
 
 //Set page starter variables//
-$includeDirectory = "/var/www/mmcFE/www/includes/";
+$includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 
 //Include site functions
 include($includeDirectory."requiredFunctions.php");

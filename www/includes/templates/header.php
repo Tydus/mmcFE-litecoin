@@ -6,8 +6,6 @@ $activeMiners = false;
  ini_set("display_errors", 1);
 require("includes/requiredFunctions.php");
 require("includes/universalChecklogin.php");
-include ("includes/templates/btceapi.php");
-include ("includes/templates/btcapi.php");
 if (!isset($pageTitle)) $pageTitle = outputPageTitle();
 else $pageTitle = outputPageTitle(). " ". $pageTitle;
 
@@ -74,8 +72,8 @@ else $pageTitle = outputPageTitle(). " ". $pageTitle;
     <div id="ministats">
 	<table border="0">
 	<tr>
-    <td><li>ltc/usd: $<?php echo "$ltcusd"?> &nbsp;&nbsp;&nbsp;&nbsp;</li></td>
-    <td><li>ltc/btc: <?php echo "$ltcbtc"?> &nbsp;&nbsp;&nbsp;&nbsp;</li></td>
+    <td><li>ltc/usd: $<?php echo $settings->getsetting('ltcusdlast'); ?> &nbsp;&nbsp;&nbsp;&nbsp;</li></td>
+    <td><li>ltc/btc: <?php echo $settings->getsetting('ltcbtclast'); ?></li></td>
 	<td><li>btc/usd: $<?php print $settings->getsetting('mtgoxlast'); ?>&nbsp;&nbsp;&nbsp;&nbsp;</li></td>
 	<td><li>Pool Hashrate: <?php print round($settings->getsetting('currenthashrate')/1, 2); ?> KH/s&nbsp;&nbsp;&nbsp;&nbsp;</li></td>
     <?
@@ -92,7 +90,7 @@ else $pageTitle = outputPageTitle(). " ". $pageTitle;
 </div>
 
 
-<?php include ("includes/templates/menu.php"); ?>
-<?php //include ("includes/leftsidebar.php"); ?>
+<?php include_once ("includes/templates/menu.php"); ?>
+<?php //include_once ("includes/leftsidebar.php"); ?>
 
 

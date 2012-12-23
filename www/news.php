@@ -1,6 +1,6 @@
 <?php
 
-	include ("includes/templates/header.php");
-	include ("includes/templates/news.php");
-	include ("includes/templates/footer.php");
+	include_once ("includes/templates/header.php");
+	include_once ("includes/templates/news.php");
+	include_once ("includes/templates/footer.php");
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-include ("includes/templates/header.php");
+include_once ("includes/templates/header.php");
 
 $goodMessage = "";
 $returnError = "";
@@ -111,7 +111,7 @@ if (isset($_POST["act"]))
         <div class="block_content">
 
                 <div class="sidebar">
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
                 </div>          <!-- .sidebar ends -->
 
 
@@ -349,4 +349,4 @@ if ($returnError) { echo "<div class=\"message errormsg\"><p>".antiXss($returnEr
 
 </div>          <!-- .block ends -->
 
-<?php include ("includes/templates/footer.php"); ?>
+<?php include_once ("includes/templates/footer.php"); ?>

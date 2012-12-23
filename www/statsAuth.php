@@ -1,4 +1,4 @@
-<?php include ("includes/templates/header.php"); ?>
+<?php include_once ("includes/templates/header.php"); ?>
 
 <?php
 
@@ -10,7 +10,7 @@ if( !$cookieValid ){
 
 $numberResults = 15;
 $last_no_blocks_found = 10;
-$BTC_per_block = 50; // don't keep this hardcoded
+$BTC_per_block = $settings->getsetting('blockvalue');; // don't keep this hardcoded
 $bitcoinController = new BitcoinClient($rpcType, $rpcUsername, $rpcPassword, $rpcHost);
 $difficulty = $bitcoinController->query("getdifficulty");
 
@@ -71,7 +71,7 @@ $difficulty = $bitcoinController->query("getdifficulty");
 
                 <div class="sidebar">
 
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
 
                 </div>          <!-- .sidebar ends -->
 

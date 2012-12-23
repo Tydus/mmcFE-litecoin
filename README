@@ -23,7 +23,9 @@ Deps:
 	- pushpool
 	- mysql
 	- php
-	- php5-cli
+	- php-cli
+        - php-mysql
+        - php-bcmath
 
 Layout and Configuration:
 	You should have the following directories with this package. 

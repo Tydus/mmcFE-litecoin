@@ -54,7 +54,7 @@
 
                 <div class="sidebar">
 
-                        <?php include ("includes/leftsidebar.php"); ?>
+                        <?php include_once ("includes/leftsidebar.php"); ?>
 
                 </div>          <!-- .sidebar ends -->
 

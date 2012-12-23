@@ -1,5 +1,5 @@
 <?php
-include ("includes/templates/header.php");
+include_once ("includes/templates/header.php");
 
 //Test registration information
 $returnError = "";
