@@ -18,13 +18,12 @@ if [ -e $PIDFILE ]; then
  exit
 else
  echo $PID > $PIDFILE
- cd /var/www/mmcFE/cronjobs/
  echo -e "\ncronjob.php\n-------------"; time $PHP_BIN cronjob.php; sleep 1;
  echo -e "\nshares.php\n-------------"; time $PHP_BIN shares.php; sleep 1;
  echo -e "\npayout.php\n-------------"; time $PHP_BIN payout.php; sleep 1;
  echo -e "\nworkers.php\n-------------"; time $PHP_BIN workers.php; sleep 1;
  echo -e "\nhashrate.php\n-------------"; time $PHP_BIN hashrate.php; sleep 1;
  echo -e "\narchive.php\n-------------"; time $PHP_BIN archive.php; sleep 1;
- $PHP_BIN tickers.php &
+ echo -e "\ntickers.php\n-------------"; time $PHP_BIN tickers.php; sleep 1;
  rm -rf $PIDFILE
 fi
