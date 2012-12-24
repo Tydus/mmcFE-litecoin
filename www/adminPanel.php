@@ -231,7 +231,7 @@ if ($returnError) { echo "<div class=\"message errormsg\"><p>".antiXss($returnEr
 	</form>
 	<br>
 
-	<?php if($num_results) { echo "<font size='1'>" .$num_results. " result(s)</font>"; }?>
+	<?php if(isset($num_results)) { echo "<font size='1'>" .$num_results. " result(s)</font>"; }?>
 	<?php //if($num_results) { echo $num_results. " result(s)"; }?>
 
 	<div id="search_infobox">
@@ -264,7 +264,7 @@ if ($returnError) { echo "<div class=\"message errormsg\"><p>".antiXss($returnEr
 			</table>
 		</div>
 
-		<div id="item_results"><?php print $item_results; ?></div>
+		<div id="item_results"><?php if (isset($item_results)) { print $item_results; } ?></div>
 
 	</div>
 
