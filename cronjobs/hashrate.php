@@ -4,16 +4,22 @@ $includeDirectory = "/opt/mmcFE-litecoin/www/includes/";
 
 include($includeDirectory."requiredFunctions.php");
 
+if (isset($hashrateInterval)) {
+   $HASHRATE_INTERVAL = $hashrateInterval;
+} else {
+   $HASHRATE_INTERVAL = 15 * 60;
+}
+
 //Hashrate by worker
 $sql =  "SELECT IFNULL(sum(a.id),0) as id, p.username FROM pool_worker p LEFT JOIN ".
                         "((SELECT count(id) as id, username ".
                         "FROM shares ".
-                        "WHERE time > DATE_SUB(now(), INTERVAL 10 MINUTE) ".
+                        "WHERE time > DATE_SUB(now(), INTERVAL $HASHRATE_INTERVAL SECOND) ".
                         "GROUP BY username) ".
                 "UNION ".
                         "(SELECT count(id) as id, username ".
                         "FROM shares_history ".
-                        "WHERE time > DATE_SUB(now(), INTERVAL 10 MINUTE) ".
+                        "WHERE time > DATE_SUB(now(), INTERVAL $HASHRATE_INTERVAL SECOND) ".
                         "GROUP BY username)) a ".
                 "ON p.username=a.username ".
                 "GROUP BY username";
@@ -22,22 +28,22 @@ while ($resultrow = mysql_fetch_object($result)) {
         $retarget = $rewritePower;
         $hashrate = $resultrow->id;
         $key = bcpow(2,$retarget) or die("bcpow err");
-        $hashrate = round((($hashrate*$key)/600)/1000, 3);
+        $hashrate = round((($hashrate*$key)/$HASHRATE_INTERVAL)/1000, 3);
         mysql_query("UPDATE pool_worker SET hashrate = $hashrate WHERE username = '$resultrow->username'");
 }
 
 //Total Hashrate (more exact than adding)
 $sql =  "SELECT sum(a.id) as id FROM ".
-                        "((SELECT count(id) as id FROM shares WHERE time > DATE_SUB(now(), INTERVAL 10 MINUTE)) ".
+                        "((SELECT count(id) as id FROM shares WHERE time > DATE_SUB(now(), INTERVAL $HASHRATE_INTERVAL SECOND)) ".
                 	"UNION ".
-                        "(SELECT count(id) as id FROM shares_history WHERE time > DATE_SUB(now(), INTERVAL 10 MINUTE)) ".
+                        "(SELECT count(id) as id FROM shares_history WHERE time > DATE_SUB(now(), INTERVAL $HASHRATE_INTERVAL SECOND)) ".
                         ") a ";
 $result = mysql_query($sql);
 if ($resultrow = mysql_fetch_object($result)) {
         $retarget = $rewritePower;
         $hashrate = $resultrow->id;
         $key = bcpow(2,$retarget) or die("bcpow err");
-        $hashrate = round((($hashrate*$key)/600)/1000, 3);
+        $hashrate = round((($hashrate*$key)/$HASHRATE_INTERVAL)/1000, 3);
         mysql_query("UPDATE settings SET value = '$hashrate' WHERE setting='currenthashrate'");
 }
 

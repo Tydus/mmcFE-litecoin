@@ -28,6 +28,13 @@ $salt = "aBOWuq3K6WlmZ1PLG2wf9ukbyOHkYCVdtQGuTnok1DtS5ULO";
 // current base value of a block in this network
 $blockValue = 6.00;
 
+// archive information for this many blocks
+//   hint: should be comfortably > hashrateInterval / 60 * new blocks per minute
+$blockHistoryCount = 100;
+
+// average hashrate over this timeperiod (seconds)
+$hashrateInterval = 15 * 60;
+
 // power modifier for shares so we properly calcuate hash rate
 // in pushpool config (ArtForz build): "rpc.target.bits"    : 21,
 $rewritePower = 21;

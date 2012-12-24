@@ -9,7 +9,7 @@ include($includeDirectory."requiredFunctions.php");
 // get current block num from bitcoind - $num_blocks_old so we can leave some data in shares_history for hashrates
 $bitcoinController = new BitcoinClient($rpcType, $rpcUsername, $rpcPassword, $rpcHost);
 $currentBlockNumber = $bitcoinController->getblockcount();
-$num_blocks_old = ($currentBlockNumber - 10);
+$num_blocks_old = ($currentBlockNumber - $blockHistoryCount);
 
 if (!$num_blocks_old) { die($num_blocks_old); }
 
