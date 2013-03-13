@@ -1,4 +1,3 @@
-
 CREATE TABLE IF NOT EXISTS `accountBalance` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `userId` int(255) NOT NULL,
@@ -67,7 +66,7 @@ INSERT INTO `settings` (`setting`, `value`) VALUES
 ('donatedtodate', '0.00'),
 ('lastdonatedblock', '0'),
 ('ltcbtclast','0.00000'),
-('ltcusdlast','0.0000')
+('ltcusdlast','0.0000');
 
 
 CREATE TABLE IF NOT EXISTS `shares` (
